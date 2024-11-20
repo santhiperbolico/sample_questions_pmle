@@ -24,6 +24,9 @@ def start_quiz(questions, options, answers):
             option_vars[i].set(0)  # Restablecer las casillas
             option_buttons[i].config(text=opt, state="normal")
 
+        # Habilitar el botón de enviar respuesta
+        submit_button.config(text="Enviar respuesta", command=submit_answer)
+
     def submit_answer():
         idx = question_indices[current_question_index[0]]
         user_selection = {options[idx][i][0] for i, var in enumerate(option_vars) if var.get() == 1}
@@ -38,7 +41,9 @@ def start_quiz(questions, options, answers):
 
         questions_answered[0] += 1
         update_stats()
-        next_question()
+
+        # Cambiar el botón a "Siguiente" para permitir avanzar a la siguiente pregunta
+        submit_button.config(text="Siguiente", command=next_question)
 
     def next_question():
         if current_question_index[0] + 1 < len(questions):
