@@ -91,4 +91,4 @@ if __name__ == "__main__":
     params = get_params(sys.argv[1:])
     questions, options, answers = extract_questions_from_pdf(**params)
     quiz_app = start_quiz(questions, options, answers)
-    quiz_app.launch(debug=True, inbrowser=True, server_port=7860)
+    quiz_app.launch(debug=True, inbrowser=True, server_port=7860, share=True)
