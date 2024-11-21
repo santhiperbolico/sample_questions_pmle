@@ -16,8 +16,11 @@ class QuizzPMLE:
 
     current_question_index = attrib(type=int, init=False, default=0)
     score = attrib(type=int, init=False, default=0)
+    question_indices = attrib(type=list[int], init=False)
 
     def __call__(self, **kwargs):
+        self.question_indices = list(range(len(self.questions)))
+        random.shuffle(self.question_indices)
         interface = self.create_interface()
         return interface.launch(**kwargs)
 
@@ -97,9 +100,9 @@ class QuizzPMLE:
             Texto con la puntuación.
 
         """
-        question_indices = list(range(len(self.questions)))
+
         if self.current_question_index < len(self.questions):
-            idx = question_indices[self.current_question_index]
+            idx = self.question_indices[self.current_question_index]
             question_text = (f"Pregunta {self.current_question_index + 1} "
                              f"(page {idx * 2 + 1}):\n{self.questions[idx]}\n")
             option_texts = self.options[idx]
@@ -134,9 +137,8 @@ class QuizzPMLE:
         scoring: str
             Texto con la puntuación.
         """
-        question_indices = list(range(len(self.questions)))
         if self.current_question_index < len(self.questions):
-            idx = question_indices[self.current_question_index]
+            idx = self.question_indices[self.current_question_index]
             user_selection = set(user_input[0::2])
             correct_answers = set(self.answers[idx])
 
@@ -171,8 +173,7 @@ class QuizzPMLE:
             Texto con la puntuación.
 
         """
-        question_indices = list(range(len(self.questions)))
-        random.shuffle(question_indices)
+        random.shuffle(self.question_indices)
         self.current_question_index = 0
         self.score = 0
         next_question, next_options, final_score = self.get_next_question()
