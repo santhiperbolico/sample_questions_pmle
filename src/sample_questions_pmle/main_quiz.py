@@ -1,6 +1,6 @@
 import logging
 import os
-
+import sys
 from attr import attrs, attrib
 from sample_questions_pmle.utils import extract_questions_from_pdf, get_params
 
