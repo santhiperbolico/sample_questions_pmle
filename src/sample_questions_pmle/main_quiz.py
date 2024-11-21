@@ -1,5 +1,6 @@
 import logging
 import os
+import importlib.resources
 
 from attr import attrs, attrib
 from sample_questions_pmle.utils import extract_questions_from_pdf
@@ -183,6 +184,8 @@ if __name__ == "__main__":
     root = logging.getLogger()
     root.setLevel(os.environ.get("LOGLEVEL", "INFO"))
     logging.basicConfig(level=logging.INFO, format="[%(levelname)s] [%(asctime)s] %(message)s")
-    questions, options, answers = extract_questions_from_pdf("Sample Questions of PMLE.pdf")
+    with importlib.resources.path("sample_questions_pmle",
+                                  "Sample Questions of PMLE.pdf") as pdf_path:
+        questions, options, answers = extract_questions_from_pdf(pdf_path)
     quiz_app = QuizzPMLE(questions, options, answers)
     quiz_app(debug=True, inbrowser=True, server_port=7860, share=True)

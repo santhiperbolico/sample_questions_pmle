@@ -3,12 +3,13 @@ import os
 
 setup(
     name='quiz_app',
-    version='2.0',
+    version='2.2',
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     py_modules=['sample_questions_pmle.main'],
     install_requires=[
         'PyMuPDF',
+        'gradio'
     ],
     entry_points={
         'console_scripts': [
