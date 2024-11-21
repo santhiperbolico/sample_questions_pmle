@@ -3,7 +3,7 @@ import os
 
 setup(
     name='quiz_app',
-    version='2.2',
+    version='2.3',
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     py_modules=['sample_questions_pmle.main'],
@@ -16,7 +16,7 @@ setup(
             'quiz_app = sample_questions_pmle.main:extract_questions_from_pdf',
         ],
     },
-    author='Tu Nombre',
+    author='Santiago Arranz Sanz',
     author_email='santiago.arranz.sanz@gmail.com',
     description='Aplicación interactiva de cuestionarios basada en Tkinter',
     long_description=open('README.md').read() if os.path.exists('README.md') else '',
