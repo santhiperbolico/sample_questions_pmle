@@ -3,7 +3,7 @@ import os
 
 setup(
     name='quiz_app',
-    version='1.3',
+    version='2.0',
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     py_modules=['sample_questions_pmle.main'],
